@@ -8,7 +8,7 @@ def read(*paths):
     with open(os.path.join(*paths), 'r') as f:
         return f.read()
 
-VERSION = '0.0.14'
+VERSION = '0.0.15'
 DESCRIPTION = 'This is a simple package to help musicians that do not use a lot of code. '
 LONG_DESCRIPTION = 'CHARLESNEIMOG.COM'
 
@@ -18,9 +18,9 @@ setup(
     version=VERSION,
     author="Charles K. Neimog",
     author_email="<charlesneimog@outlook.com>",
-    url = 'https://github.com/charlesneimog/OM-py',
+    url = 'https://github.com/charlesneimog/OM_py',
     description=DESCRIPTION,
-    long_description = ( read('README.rst') + '\n\n' + read('COPYING.rst') ),
+    long_description = (read('README.md') + '\n\n' + read('COPYING.rst') ),
     long_description_content_type="text/markdown",
     packages=find_packages(),
     install_requires=['html_to_json', 'python-osc'],
