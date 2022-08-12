@@ -2,7 +2,6 @@
 
 import os
 
-from om_py.functions import f2mc
 from om_py.random import Random 
 from om_py.python_to_om import to_om, lispify, om_print
 #from om_py.musicxml2om import musicxml2om
