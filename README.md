@@ -2,7 +2,7 @@
 
 With this package I aim to translate to Python some of the functions of OpenMusic.
 
-###### Functions implemented
+##### Functions implemented
 
 _om_scale, f2mc_. 
 
