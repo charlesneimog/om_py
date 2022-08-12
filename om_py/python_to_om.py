@@ -116,6 +116,7 @@ def lispify(L):
         
         else:
             not_supported_type = type(L)
+            # Error message
             Warning = (f'{pcolors.FAIL}ERROR: Type not supported, please report that {pcolors.BOLD}{not_supported_type}{pcolors.FAIL} is not a supported type to ]https://github.com/charlesneimog/OM-py/issues/new{pcolors.ENDC}')
             return Warning
 
