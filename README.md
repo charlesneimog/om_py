@@ -1,4 +1,5 @@
 # OM-py 
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/om-py)](https://pypistats.org/packages/om-py)
 
 With this package I aim to translate to Python some of the functions of OpenMusic.
 
