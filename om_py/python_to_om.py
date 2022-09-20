@@ -65,7 +65,14 @@ def to_om_dict (L):
     return result 
 
 # =============================================================================
-
+def dict_to_list (L):
+    # recursive function to convert a dictionary to a list
+    if isinstance(L, dict):
+        return [dict_to_list(v) for v in L.values()]
+    else:
+        return lispify(L)
+    
+    
 def lispify(L):
     """Convert a Python object L to a Common Lisp representation."""
     
@@ -92,33 +99,60 @@ def lispify(L):
         elif (isinstance(L, list)):
             lispify_list = [lispify(element) for element in L]
             return '(' + ' '.join(lispify_list) + ')'
-        elif isinstance(L, dict):
-            return lispify(to_om_dict(L))
+
+
+        elif (isinstance(L, dict)):
+            final_result = []
+            for i, j in zip(L.keys(), L.values()):
+                dict_key = list()
+                dict_values = list()
+                dict_key.append(i)
+                dict_values.append(j)
+                result = dict_key + dict_values
+                final_result.append(result)
+            return lispify(final_result)
+
+
+
 
         # COMPLEX NUMBERS
-
         elif isinstance(L, complex):
             return '#C({0} {1})'.format(L.real, L.imag)
 
         # ATOMS
-
         elif (isinstance(L, float) or isinstance(L, int)):
             return L.lisp
-
 
 
         elif isinstance(L, str):
             new_path = L.replace('\\', '/')
             return new_path.lisp
 
-        elif isinstance(L, None):
+        # check if L is None
+        elif L is None:
             return '()'
         
         else:
-            not_supported_type = type(L)
-            # Error message
-            Warning = (f'{pcolors.FAIL}ERROR: Type not supported, please report that {pcolors.BOLD}{not_supported_type}{pcolors.FAIL} is not a supported type to ]https://github.com/charlesneimog/OM-py/issues/new{pcolors.ENDC}')
-            return Warning
+            if import_numpy:
+                if isinstance(L, numpy.ndarray):
+                    return lispify(L.tolist())
+                elif isinstance(L, numpy.int64):
+                    return L.lisp
+                elif isinstance(L, numpy.int32):
+                    return L.lisp
+                elif isinstance(L, numpy.float64):
+                    return L.lisp
+                elif isinstance(L, numpy.float32):
+                    return L.lisp
+            
+            try:
+                # convert to float
+                return lispify(float(L))
+            except:
+                not_supported_type = type(L)
+                # Error message
+                Warning = (f'{pcolors.FAIL}ERROR: Type not supported, please report that {pcolors.BOLD}{not_supported_type}{pcolors.FAIL} is not a supported type to ]https://github.com/charlesneimog/OM-py/issues/new{pcolors.ENDC}')
+                return Warning
 
 # Supported Types: ============================================================
 
@@ -129,7 +163,6 @@ get_dict(complex)['lisp'] = property(lambda complex:'#C({0} {1})'.format(complex
 get_dict(list)['lisp'] = property(lispify) # List
 get_dict(tuple)['lisp'] = property(lispify) # Tuple
 get_dict(dict)['lisp'] = property(lispify) # Dict
-
 
 ## =================
 
