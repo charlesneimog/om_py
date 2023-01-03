@@ -20,3 +20,11 @@ def f2mc(freq):
         ref_pitch = 440 
         diferenca_com_A4 =  6900 + (math.log(abs(freq / ref_pitch)) / math.log(2)) * 1200
         return round(diferenca_com_A4, 2)
+
+def mc2f(mc): 
+    if isinstance(mc, list):
+        return [mc2f(i) for i in mc]
+    if isinstance(mc, int) or isinstance(mc, float):
+        ref_pitch = 440 
+        return ref_pitch * (2 ** ((mc - 6900) / 1200))
+
