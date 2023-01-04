@@ -14,9 +14,9 @@ def om_scale(om_self, minout, maxout, minin=0, maxin=0):
 
 
 def f2mc(freq):
-    if len(freq) > 1:
+    if isinstance(freq, list):
         return [f2mc(i) for i in freq]
-    else:
+    if isinstance(freq, int) or isinstance(freq, float):
         ref_pitch = 440 
         diferenca_com_A4 =  6900 + (math.log(abs(freq / ref_pitch)) / math.log(2)) * 1200
         return round(diferenca_com_A4, 2)
@@ -28,3 +28,9 @@ def mc2f(mc):
         ref_pitch = 440 
         return ref_pitch * (2 ** ((mc - 6900) / 1200))
 
+
+def approx_mc(mc, approx=100):
+    if isinstance(mc, list):
+        return [approx_mc(i, approx) for i in mc]
+    if isinstance(mc, int) or isinstance(mc, float):
+        return round(mc / approx) * approx 
