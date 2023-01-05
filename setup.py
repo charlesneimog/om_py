@@ -1,14 +1,14 @@
 # python setup.py sdist bdist_wheel
 # twine upload dist/*
 from setuptools import setup, find_packages
-import codecs
+# import codecs
 import os
 
 def read(*paths):
     with open(os.path.join(*paths), 'r') as f:
         return f.read()
 
-VERSION = '0.0.18'
+VERSION = '0.0.19'
 DESCRIPTION = 'This is a simple package to help musicians to general functions.'
 LONG_DESCRIPTION = 'CHARLESNEIMOG.COM'
 
