@@ -28,7 +28,6 @@ def mc2f(mc):
         ref_pitch = 440 
         return ref_pitch * (2 ** ((mc - 6900) / 1200))
 
-
 def approx_mc(mc, approx=100):
     if isinstance(mc, list):
         return [approx_mc(i, approx) for i in mc]
