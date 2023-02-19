@@ -8,7 +8,7 @@ def read(*paths):
     with open(os.path.join(*paths), 'r') as f:
         return f.read()
 
-VERSION = '0.0.20'
+VERSION = '0.0.21'
 DESCRIPTION = 'This is a simple package to help musicians to general functions.'
 LONG_DESCRIPTION = 'www.charlesneimog.com'
 
