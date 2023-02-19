@@ -10,7 +10,7 @@ def read(*paths):
 
 VERSION = '0.0.20'
 DESCRIPTION = 'This is a simple package to help musicians to general functions.'
-LONG_DESCRIPTION = 'CHARLESNEIMOG.COM'
+LONG_DESCRIPTION = 'www.charlesneimog.com'
 
 # Setting up
 setup(
